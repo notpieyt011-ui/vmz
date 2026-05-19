@@ -112,8 +112,8 @@ EOF
     print_box_header "CONTROL PANEL" $NEON_PURPLE
     print_menu_option "1" "Panel Installation"
     print_menu_option "2" "Wings Installation"
-    print_menu_option "4" "Uninstall Tools"
-    print_menu_option "6" "Cloudflare Setup"
+    print_menu_option "3" "Uninstall Tools"
+    print_menu_option "4" "Cloudflare Setup"
     print_menu_option "0" "Exit Manager"
     echo -e "\n${DANGER}══════════════════════════════════════════════════════════${RESET}"
     read -p $'\e[93m\e[1m Select option [0-10]: \e[0m' choice
@@ -126,13 +126,9 @@ while true; do
     show_menu
     case $choice in
         1) run_remote_script "https://raw.githubusercontent.com/notpieyt011-ui/pterodactyl/main/petro.sh" "PANEL INSTALLATION" ;;
-        2) run_remote_script "https://raw.githubusercontent.com/notpieyt011-ui/pterodactyl/main/wings.sh" "WINGS INSTALLATION" ;;
-        3) run_remote_script "https://raw.githubusercontent.com/mahimxyzz/Vps/refs/heads/main/cd/update2.sh" "PANEL UPDATE" ;;
-        4) run_remote_script "https://raw.githubusercontent.com/mahimxyzz/Vps/refs/heads/main/cd/uninstall2.sh" "UNINSTALL TOOLS" ;;
-        5) run_remote_script "https://raw.githubusercontent.com/mahimxyzz/Vps/refs/heads/main/cd/Blueprint2.sh" "BLUEPRINT SETUP" ;;
-        6) run_remote_script "https://raw.githubusercontent.com/mahimxyzz/Vps/refs/heads/main/cd/cloudflare.sh" "CLOUDFLARE SETUP" ;;
-        7) run_remote_script "https://raw.githubusercontent.com/mahimxyzz/Vps/refs/heads/main/cd/th2.sh" "THEME CHANGER" ;;
-        
+        2) run_remote_script "https://raw.githubusercontent.com/notpieyt011-ui/pterodactyl/main/wings.sh" "WINGS INSTALLATION" ;;        
+        3) run_remote_script "https://raw.githubusercontent.com/notpieyt011-ui/pterodactyl/main/uninstall.sh" "UNINSTALL TOOLS" ;;       
+        4) run_remote_script "https://raw.githubusercontent.com/mahimxyzz/Vps/refs/heads/main/cd/cloudflare.sh" "CLOUDFLARE SETUP" ;;
     esac
 done
 
