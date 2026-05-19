@@ -128,7 +128,7 @@ while true; do
         1) run_remote_script "https://raw.githubusercontent.com/notpieyt011-ui/pterodactyl/main/petro.sh" "PANEL INSTALLATION" ;;
         2) run_remote_script "https://raw.githubusercontent.com/notpieyt011-ui/pterodactyl/main/wings.sh" "WINGS INSTALLATION" ;;        
         3) run_remote_script "https://raw.githubusercontent.com/notpieyt011-ui/pterodactyl/main/uninstall.sh" "UNINSTALL TOOLS" ;;       
-        4) run_remote_script "https://raw.githubusercontent.com/mahimxyzz/Vps/refs/heads/main/cd/cloudflare.sh" "CLOUDFLARE SETUP" ;;
+        4) run_remote_script "https://raw.githubusercontent.com/notpieyt011-ui/pterodactyl/main/cloudfare.sh" "CLOUDFLARE SETUP" ;;
     esac
 done
 
