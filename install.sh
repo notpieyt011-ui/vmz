@@ -115,14 +115,8 @@ EOF
     print_box_header "CONTROL PANEL" $NEON_PURPLE
     print_menu_option "1" "Panel Installation"
     print_menu_option "2" "Wings Installation"
-    print_menu_option "3" "Panel Update"
-    print_menu_option "4" "Uninstall Tools"
-    print_menu_option "5" "Blueprint Setup"
-    print_menu_option "6" "Cloudflare Setup"
-    print_menu_option "7" "Change Theme"
-    print_menu_option "8" "Tailscale (Install + Up)"
-    print_menu_option "9" "Minecraft Player Manager"
-    print_menu_option "10" "Jexactyl Installation"
+    print_menu_option "3" "Uninstall Tools"
+    print_menu_option "4" "Cloudflare Setup"
     print_menu_option "0" "Exit Manager"
     echo -e "\n${DANGER}══════════════════════════════════════════════════════════${RESET}"
     read -p $'\e[93m\e[1m Select option [0-10]: \e[0m' choice
