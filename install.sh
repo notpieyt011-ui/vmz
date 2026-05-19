@@ -141,21 +141,7 @@ while true; do
         5) run_remote_script "https://raw.githubusercontent.com/mahimxyzz/Vps/refs/heads/main/cd/Blueprint2.sh" "BLUEPRINT SETUP" ;;
         6) run_remote_script "https://raw.githubusercontent.com/mahimxyzz/Vps/refs/heads/main/cd/cloudflare.sh" "CLOUDFLARE SETUP" ;;
         7) run_remote_script "https://raw.githubusercontent.com/mahimxyzz/Vps/refs/heads/main/cd/th2.sh" "THEME CHANGER" ;;
-        8)
-            clear
-            print_box_header "TAILSCALE INSTALLATION" $NEON_PURPLE
-            progress "Installing Tailscale..."
-            curl -fsSL https://tailscale.com/install.sh | sh
-            success "Tailscale installed!"
-            systemctl enable --now tailscaled 2>/dev/null || true
-            progress "Bringing Tailscale online..."
-            if [ -n "$TS_AUTH_KEY" ]; then
-                sudo tailscale up -ssh --auth-key="$TS_AUTH_KEY" && success "Authenticated via key"
-            else
-                sudo tailscale up -ssh && success "Connected! Approve in admin console"
-            fi
-            read -p $'\e[93mPress Enter to continue...\e[0m' -r
-            ;;
+        
 9)
     clear
     print_box_header "MINECRAFT PLAYER MANAGER" $NEON_PURPLE
