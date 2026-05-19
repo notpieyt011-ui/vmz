@@ -108,10 +108,10 @@ EOF
     echo -e "${NEON_PURPLE}${BOLD} PTERODACTYL HOSTING MANAGER${RESET}\n"
     print_box_header "CONTROL PANEL" $NEON_PURPLE
     print_menu_option "1" "ɪɴꜱᴛᴀʟʟ ᴩᴀɴᴇʟ"
-    print_menu_option "2" "Wings Installation"
-    print_menu_option "3" "Uninstall Tools"
-    print_menu_option "4" "Cloudflare Setup"
-    print_menu_option "0" "Exit Manager"
+    print_menu_option "2" "ɪɴꜱᴛᴀʟʟ ᴡɪɴɢꜱ"
+    print_menu_option "3" "ᴜɴɪɴꜱᴛᴀʟʟ ᴛᴏᴏʟꜱ"
+    print_menu_option "4" "ᴄʟᴏᴜᴅꜰᴀʀᴇ ꜱᴇᴛᴜᴩ"
+    print_menu_option "0" "ᴇxɪᴛ"
     echo -e "\n${DANGER}══════════════════════════════════════════════════════════${RESET}"
     read -p $'\e[93m\e[1m Select option [0-10]: \e[0m' choice
     echo
