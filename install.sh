@@ -1,149 +1,145 @@
-#!/bin/bash
-
-# Colors
-GREEN_LIGHT='\033[92m'
-GREEN_DARK='\033[32m'
-GREEN_CYAN='\033[36m'
-GREEN_BRIGHT='\033[92;1m'
-YELLOW_GREEN='\033[93m'
-NC='\033[0m'
-
-# Banner lines
-BANNER_LINES=(
-"   ██████╗ ███████╗████████╗██████╗  ██████╗ "
-"   ██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██╔═══██╗"
-"   ██████╔╝█████╗     ██║   ██████╔╝██║   ██║"
-"   ██╔═══╝ ██╔══╝     ██║   ██╔══██╗██║   ██║"
-"   ██║     ███████╗   ██║   ██║  ██║╚██████╔╝"
-"   ╚═╝     ╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ "
-)
-
-# Hide cursor
-tput civis
-
-# Function: Pulse effect (zoom in/out)
-pulse_effect() {
-    local scales=(1 1 0.9 0.8 0.9 1 1.1 1.2 1.1 1)
-    for scale in "${scales[@]}"; do
-        clear
-        if (( $(echo "$scale == 1" | bc -l) )); then
-            echo -e "${GREEN_BRIGHT}"
-        elif (( $(echo "$scale > 1" | bc -l) )); then
-            echo -e "${GREEN_LIGHT}"
-        else
-            echo -e "${GREEN_DARK}"
-        fi
+#!/usr/bin/env bash
+# ===================================================
+# PTERODACTYL HOSTING MANAGER - NEXT GEN ULTRA EDITION
+# 2025 Edition
+# ===================================================
+# Original Creator: MahimOp
+# YouTube : https://www.youtube.com/@mahimxyz
+# Discord : https://discord.gg/zkDNdPpArS
+# ===================================================
+set -e
+# Next-Gen Neon Color Theme
+RESET="\e[0m"
+BOLD="\e[1m"
+DIM="\e[2m"
+UNDERLINE="\e[4m"
+CYAN="\e[96m"
+BLUE="\e[94m"
+PURPLE="\e[95m"
+GREEN="\e[92m"
+YELLOW="\e[93m"
+RED="\e[91m"
+WHITE="\e[97m"
+NEON_GREEN="\e[38;5;82m"
+NEON_PURPLE="\e[38;5;165m"
+DANGER="\e[38;5;75m"
+GLOW="\e[38;5;51m"
+DANGER="\e[38;5;196m"
+clear
+# Epic Welcome Animation Header
+welcome_banner() {
+    clear
+    echo -e "${DANGER}"
+    cat << "EOF"
+ ___      ___       __       __    __   __     ___      ___ 
+|"  \    /"  |     /""\     /" |  | "\ |" \   |"  \    /"  |
+ \   \  //   |    /    \   (:  (__)  :)||  |   \   \  //   |
+ /\\  \/.    |   /' /\  \   \/      \/ |:  |   /\\  \/.    |
+|: \.        |  //  __'  \  //  __  \\ |.  |  |: \.        |
+|.  \    /:  | /   /  \\  \(:  (  )  :)/\  |\ |.  \    /:  |
+|___|\__/|___|(___/    \___)\__|  |__/(__\_|_)|___|\__/|___|
+   
+EOF
+    echo -e "${NEON_PURPLE}${BOLD} NEXT GEN ULTRA EDITION - 2025${RESET}"
+    echo -e "${GLOW} Ultimate Pterodactyl Control Center${RESET}"
+    echo -e "${DIM} Original Creator: ${BOLD}MahimOp${RESET} ${DIM}| YouTube: @mahimxyz${RESET}"
+    echo -e "${DIM} Discord: https://discord.gg/zkDNdPpArS${RESET}"
+    echo -e "${DANGER}══════════════════════════════════════════════════════════${RESET}\n"
+    sleep 1.5
+}
+# Utility Functions
+progress() { echo -e "${NEON_GREEN}${BOLD}➤ $1${RESET}"; }
+success() { echo -e "${GREEN}${BOLD}✓ $1${RESET}"; }
+warning() { echo -e "${YELLOW}${BOLD}! $1${RESET}"; }
+error() { echo -e "${RED}${BOLD}✘ $1${RESET}"; }
+print_box_header() {
+    local text="$1"
+    local color="${2:-$NEON_PURPLE}"
+    echo -e "${color}${BOLD}╔══════════════════════════════════════════════════════════╗${RESET}"
+    echo -e "${color}${BOLD}║${RESET} ${WHITE}${BOLD}$text$(printf '%*s' $((58 - ${#text})) '') ${color}${BOLD}║${RESET}"
+    echo -e "${color}${BOLD}╚══════════════════════════════════════════════════════════╝${RESET}\n"
+}
+print_menu_option() {
+    local num="$1"
+    local text="$2"
+    echo -e "${DANGER} ┌──────────────────────────────────────────────────────┐${RESET}"
+    echo -e "${DANGER} │${RESET} ${WHITE}${BOLD}[${NEON_GREEN}${num}${WHITE}]${RESET} ${CYAN}${text}$(printf '%*s' $((48 - ${#text} - 3)) '') ${DANGER}│${RESET}"
+    echo -e "${DANGER} └──────────────────────────────────────────────────────┘${RESET}"
+}
+# Remote Script Runner
+run_remote_script() {
+    local url="$1"
+    local name="$2"
+    clear
+    echo -e "${NEON_PURPLE}"
+    cat << "EOF"
+ ___      ___       __       __    __   __     ___      ___ 
+|"  \    /"  |     /""\     /" |  | "\ |" \   |"  \    /"  |
+ \   \  //   |    /    \   (:  (__)  :)||  |   \   \  //   |
+ /\\  \/.    |   /' /\  \   \/      \/ |:  |   /\\  \/.    |
+|: \.        |  //  __'  \  //  __  \\ |.  |  |: \.        |
+|.  \    /:  | /   /  \\  \(:  (  )  :)/\  |\ |.  \    /:  |
+|___|\__/|___|(___/    \___)\__|  |__/(__\_|_)|___|\__/|___|
+                             
+EOF
+    print_box_header "$name" $NEON_PURPLE
+    progress "Downloading and executing remote script..."
+    local temp_script=$(mktemp)
+    if curl -fsSL "$url" -o "$temp_script"; then
+        chmod +x "$temp_script"
+        bash "$temp_script"
+        rm -f "$temp_script"
+        success "$name completed!"
+    else
+        error "Failed to download script from $url"
+    fi
+    echo -e "\n${DANGER}══════════════════════════════════════════════════════════${RESET}"
+    read -p $'\e[93mPress Enter to return to menu...\e[0m' -r
+}
+# Main Menu
+show_menu() {
+    clear
+    echo -e "${DANGER}"
+    cat << "EOF"
+ ___      ___       __       __    __   __     ___      ___ 
+|"  \    /"  |     /""\     /" |  | "\ |" \   |"  \    /"  |
+ \   \  //   |    /    \   (:  (__)  :)||  |   \   \  //   |
+ /\\  \/.    |   /' /\  \   \/      \/ |:  |   /\\  \/.    |
+|: \.        |  //  __'  \  //  __  \\ |.  |  |: \.        |
+|.  \    /:  | /   /  \\  \(:  (  )  :)/\  |\ |.  \    /:  |
+|___|\__/|___|(___/    \___)\__|  |__/(__\_|_)|___|\__/|___|
+                                                           
+                                              
+EOF
+    echo -e "${NEON_PURPLE}${BOLD} PTERODACTYL HOSTING MANAGER${RESET}\n"
+    print_box_header "CONTROL PANEL" $NEON_PURPLE
+    print_menu_option "1" "Panel Installation"
+    print_menu_option "2" "Wings Installation"
+    print_menu_option "3" "Panel Update"
+    print_menu_option "4" "Uninstall Tools"
+    print_menu_option "5" "Blueprint Setup"
+    print_menu_option "6" "Cloudflare Setup"
+    print_menu_option "7" "Change Theme"
+    print_menu_option "8" "Tailscale (Install + Up)"
+    print_menu_option "9" "Minecraft Player Manager"
+    print_menu_option "10" "Jexactyl Installation"
+    print_menu_option "0" "Exit Manager"
+    echo -e "\n${DANGER}══════════════════════════════════════════════════════════${RESET}"
+    read -p $'\e[93m\e[1m Select option [0-10]: \e[0m' choice
+    echo
+}
+# Welcome
+welcome_banner
+# Main Loop
+while true; do
+    show_menu
+    case $choice in
+        1) run_remote_script "https://raw.githubusercontent.com/mahimxyzz/Vps/refs/heads/main/cd/panel2.sh" "PANEL INSTALLATION" ;;
+        2) run_remote_script "https://raw.githubusercontent.com/mahimxyzz/Vps/refs/heads/main/cd/wing2.sh" "WINGS INSTALLATION" ;;
+        3) run_remote_script "https://raw.githubusercontent.com/mahimxyzz/Vps/refs/heads/main/cd/update2.sh" "PANEL UPDATE" ;;
+        4) run_remote_script "https://raw.githubusercontent.com/mahimxyzz/Vps/refs/heads/main/cd/uninstall2.sh" "UNINSTALL TOOLS" ;;
+        5) run_remote_script "https://raw.githubusercontent.com/mahimxyzz/Vps/refs/heads/main/cd/Blueprint2.sh" "BLUEPRINT SETUP" ;;
+        6) run_remote_script "https://raw.githubusercontent.com/mahimxyzz/Vps/refs/heads/main/cd/cloudflare.sh" "CLOUDFLARE SETUP" ;;
+        7) run_remote_script "https://raw.githubusercontent.com/mahimxyzz/Vps/refs/heads/main/cd/th2.sh" "THEME CHANGER" ;;
         
-        for line in "${BANNER_LINES[@]}"; do
-            if (( $(echo "$scale != 1" | bc -l) )); then
-                # Simulate scaling by adding/removing spaces
-                if (( $(echo "$scale < 1" | bc -l) )); then
-                    echo "   $line"
-                else
-                    echo "      $line"
-                fi
-            else
-                echo "$line"
-            fi
-        done
-        echo -e "${NC}"
-        sleep 0.08
-    done
-}
 
-# Function: Slide from left
-slide_effect() {
-    for offset in {0..20}; do
-        clear
-        echo -e "${GREEN_CYAN}"
-        for line in "${BANNER_LINES[@]}"; do
-            printf "%${offset}s%s\n" "" "$line"
-        done
-        echo -e "${NC}"
-        sleep 0.03
-    done
-}
-
-# Function: Rainbow green wave
-wave_effect() {
-    local colors=($GREEN_DARK $GREEN_LIGHT $GREEN_CYAN $GREEN_BRIGHT $YELLOW_GREEN)
-    for i in {1..30}; do
-        clear
-        local color_idx=$((i % ${#colors[@]}))
-        echo -e "${colors[$color_idx]}"
-        for line in "${BANNER_LINES[@]}"; do
-            # Create wave by shifting characters
-            local shift=$((i % 10))
-            printf "%${shift}s%s\n" "" "$line"
-        done
-        echo -e "${NC}"
-        sleep 0.05
-    done
-}
-
-# Function: Blinking letters
-blink_effect() {
-    for blink in {1..20}; do
-        if ((blink % 2 == 0)); then
-            clear
-            echo -e "${GREEN_BRIGHT}"
-            for line in "${BANNER_LINES[@]}"; do
-                echo "$line"
-            done
-        else
-            clear
-            echo -e "${GREEN_DARK}"
-            for line in "${BANNER_LINES[@]}"; do
-                echo "$line"
-            done
-        fi
-        echo -e "${NC}"
-        sleep 0.15
-    done
-}
-
-# Function: Rotating colors
-color_cycle() {
-    local colors=($GREEN_DARK $GREEN_LIGHT $GREEN_CYAN $GREEN_BRIGHT)
-    while true; do
-        for color in "${colors[@]}"; do
-            clear
-            echo -e "${color}"
-            for line in "${BANNER_LINES[@]}"; do
-                echo "$line"
-            done
-            echo -e "${NC}"
-            sleep 0.3
-        done
-    done
-}
-
-# Main animation sequence
-main() {
-    while true; do
-        # Pulse effect
-        pulse_effect
-        sleep 0.5
-        
-        # Slide effect
-        slide_effect
-        sleep 0.5
-        
-        # Wave effect
-        wave_effect
-        sleep 0.5
-        
-        # Blink effect
-        blink_effect
-        sleep 0.5
-        
-        # Color cycle (runs until interrupted)
-        color_cycle
-    done
-}
-
-# Trap Ctrl+C to show cursor
-trap 'tput cnorm; clear; exit' INT
-
-# Run animation
-main
