@@ -46,55 +46,7 @@ EOF
     echo -e "${DIM} Discord: https://discord.gg/zkDNdPpArS${RESET}"
     echo -e "${DANGER}══════════════════════════════════════════════════════════${RESET}\n"
     sleep 1.5
-}
-# Utility Functions
-progress() { echo -e "${NEON_GREEN}${BOLD}➤ $1${RESET}"; }
-success() { echo -e "${GREEN}${BOLD}✓ $1${RESET}"; }
-warning() { echo -e "${YELLOW}${BOLD}! $1${RESET}"; }
-error() { echo -e "${RED}${BOLD}✘ $1${RESET}"; }
-print_box_header() {
-    local text="$1"
-    local color="${2:-$NEON_PURPLE}"
-    echo -e "${color}${BOLD}╔══════════════════════════════════════════════════════════╗${RESET}"
-    echo -e "${color}${BOLD}║${RESET} ${WHITE}${BOLD}$text$(printf '%*s' $((58 - ${#text})) '') ${color}${BOLD}║${RESET}"
-    echo -e "${color}${BOLD}╚══════════════════════════════════════════════════════════╝${RESET}\n"
-}
-print_menu_option() {
-    local num="$1"
-    local text="$2"
-    echo -e "${DANGER} ┌──────────────────────────────────────────────────────┐${RESET}"
-    echo -e "${DANGER} │${RESET} ${WHITE}${BOLD}[${NEON_GREEN}${num}${WHITE}]${RESET} ${CYAN}${text}$(printf '%*s' $((48 - ${#text} - 3)) '') ${DANGER}│${RESET}"
-    echo -e "${DANGER} └──────────────────────────────────────────────────────┘${RESET}"
-}
-# Remote Script Runner
-run_remote_script() {
-    local url="$1"
-    local name="$2"
-    clear
-    echo -e "${NEON_PURPLE}"
-    cat << "EOF"
- ___      ___       __       __    __   __     ___      ___ 
-|"  \    /"  |     /""\     /" |  | "\ |" \   |"  \    /"  |
- \   \  //   |    /    \   (:  (__)  :)||  |   \   \  //   |
- /\\  \/.    |   /' /\  \   \/      \/ |:  |   /\\  \/.    |
-|: \.        |  //  __'  \  //  __  \\ |.  |  |: \.        |
-|.  \    /:  | /   /  \\  \(:  (  )  :)/\  |\ |.  \    /:  |
-|___|\__/|___|(___/    \___)\__|  |__/(__\_|_)|___|\__/|___|
-                             
-EOF
-    print_box_header "$name" $NEON_PURPLE
-    progress "Downloading and executing remote script..."
-    local temp_script=$(mktemp)
-    if curl -fsSL "$url" -o "$temp_script"; then
-        chmod +x "$temp_script"
-        bash "$temp_script"
-        rm -f "$temp_script"
-        success "$name completed!"
-    else
-        error "Failed to download script from $url"
-    fi
-    echo -e "\n${DANGER}══════════════════════════════════════════════════════════${RESET}"
-    read -p $'\e[93mPress Enter to return to menu...\e[0m' -r
+
 }
 # Main Menu
 show_menu() {
