@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 # ===================================================
 # PTERODACTYL HOSTING MANAGER - NEXT GEN ULTRA EDITION
-# 2025 Edition
+# 2026 © Edition
 # ===================================================
-# Original Creator: MahimOp
-# YouTube : https://www.youtube.com/@mahimxyz
-# Discord : https://discord.gg/zkDNdPpArS
+# Original Creator: PranavGamerz
 # ===================================================
 set -e
 # Next-Gen Neon Color Theme
@@ -39,10 +37,9 @@ welcome_banner() {
 ╚═╝     ╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝
    
 EOF
-    echo -e "${NEON_PURPLE}${BOLD} NEXT GEN ULTRA EDITION - 2025${RESET}"
+    echo -e "${NEON_PURPLE}${BOLD} NEXT GEN ULTRA EDITION - 2026 ©${RESET}"
     echo -e "${GLOW} Ultimate Pterodactyl Control Center${RESET}"
-    echo -e "${DIM} Original Creator: ${BOLD}MahimOp${RESET} ${DIM}| YouTube: @mahimxyz${RESET}"
-    echo -e "${DIM} Discord: https://discord.gg/zkDNdPpArS${RESET}"
+    echo -e "${DIM} Original Creator: ${BOLD}PranavGamerz${RESET} ${DIM}"
     echo -e "${DANGER}══════════════════════════════════════════════════════════${RESET}\n"
     sleep 1.5
 }
@@ -110,7 +107,7 @@ show_menu() {
 EOF
     echo -e "${NEON_PURPLE}${BOLD} PTERODACTYL HOSTING MANAGER${RESET}\n"
     print_box_header "CONTROL PANEL" $NEON_PURPLE
-    print_menu_option "1" "Panel Installation"
+    print_menu_option "1" "ɪɴꜱᴛᴀʟʟ ᴩᴀɴᴇʟ"
     print_menu_option "2" "Wings Installation"
     print_menu_option "3" "Uninstall Tools"
     print_menu_option "4" "Cloudflare Setup"
